@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Arial Black", "Helvetica Inserat", "Arial Bold", sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            height: 100vh;
+            overflow: hidden; 
+            padding: 25px;
+            text-transform: uppercase; 
+        }
+
+        a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            z-index: 10;
+        }
+
+        .left-side {
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .name-brand {
+            font-size: 8vw; 
+            line-height: 1;
+            letter-spacing: -2px;
+            text-align: center;
+            user-select: none;
+        }
+
+        @media (max-width: 600px) {
+            .name-brand { font-size: 12vw; }
+            body { padding: 15px; }
+            .top-right { top: 15px; right: 15px; }
+            .left-side { left: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-right">
+        <a href="mailto:your.email@example.com">Contact</a>
+    </div>
+
+    <div class="left-side">
+        <a href="#projects">Projects</a>
+    </div>
+
+    <div class="main-container">
+        <!-- Change the text below to your actual name -->
+        <h1 class="name-brand">YOUR NAME</h1>
+    </div>
+
+</body>
+</html>
