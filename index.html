@@ -32,6 +32,7 @@
             text-decoration: underline;
         }
 
+        /* Top Right Corner Link */
         .top-right {
             position: absolute;
             top: 25px;
@@ -39,11 +40,11 @@
             z-index: 10;
         }
 
-        .left-side {
+        /* NEW: Top Left Corner Link */
+        .top-left {
             position: absolute;
-            top: 50%;
+            top: 25px;
             left: 25px;
-            transform: translateY(-50%);
             z-index: 10;
         }
 
@@ -56,7 +57,7 @@
         }
 
         .name-brand {
-            font-size: 8vw; 
+            font-size: 4vw; 
             line-height: 1;
             letter-spacing: -2px;
             text-align: center;
@@ -67,20 +68,23 @@
             .name-brand { font-size: 12vw; }
             body { padding: 15px; }
             .top-right { top: 15px; right: 15px; }
-            .left-side { left: 15px; }
+            .top-left { top: 15px; left: 15px; } /* Updated for mobile alignment */
         }
     </style>
 </head>
 <body>
 
+    <!-- Projects Button (Top Left) -->
+    <div class="top-left">
+        <a href="/projects">Projects</a>
+    </div>
+
+    <!-- Contact Button (Top Right) -->
     <div class="top-right">
-        <a href="mailto:gunter@gbwick.com">Contact</a>
+        <a href="/contact">Contact</a>
     </div>
 
-    <div class="left-side">
-        <a href="#projects">Projects</a>
-    </div>
-
+    <!-- Main Name Display -->
     <div class="main-container">
         <h1 class="name-brand">Gunter Bostwick</h1>
     </div>

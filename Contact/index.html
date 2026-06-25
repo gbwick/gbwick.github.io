@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Gunter Bostwick</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Arial Black", "Helvetica Inserat", "Arial Bold", sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            padding: 25px;
+            text-transform: uppercase;
+        }
+
+        a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 80px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-section h2 {
+            font-size: 28px;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            font-size: 16px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            border: 2px solid #000000;
+            background: #ffffff;
+            color: #000000;
+            outline: none;
+            text-transform: none;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            background-color: #f5f5f5;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            font-family: "Arial Black", sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
+            padding: 15px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Stark, minimal status indicator */
+        #form-status {
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+        }
+
+        @media (max-width: 768px) {
+            .header-nav { margin-bottom: 40px; }
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            body { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-nav">
+        <div class="top-left">
+            <a href="/">Gunter Bostwick</a>
+        </div>
+        <div class="top-right">
+            <a href="/">Home</a>
+        </div>
+    </header>
+
+    <main class="contact-container">
+        
+        <section class="info-section">
+            <h2>Direct</h2>
+            <div class="info-item">
+                Email: <a href="mailto:gunter@gbwick.com" style="font-size:16px;">gunter@gbwick.com</a>
+            </div>
+            <div class="info-item">
+                Tel: <a href="tel:9189143571" style="font-size:16px;">918-914-3571</a>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <form id="contact-form">
+                <!-- Make sure to drop your Web3Forms token here -->
+                <input type="hidden" name="access_key" value="adcdcfd0-41b2-426e-a8f5-3f8077240f7d">
+                <input type="checkbox" name="botcheck" style="display: none;">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="email@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Abc..."></textarea>
+                </div>
+
+                <button type="submit" id="submit-button" class="submit-btn">Send Message</button>
+                <div id="form-status"></div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Async Form Handling Script -->
+   <script>
+        const form = document.getElementById('contact-form');
+        const statusDiv = document.getElementById('form-status');
+        const submitBtn = document.getElementById('submit-button');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page from redirecting
+            
+            submitBtn.textContent = "SENDING...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let res = await response.json();
+                if (response.status == 200) {
+                    statusDiv.style.color = "#000000";
+                    statusDiv.textContent = "SENT";
+                    statusDiv.style.display = "block";
+                    form.reset(); // Clear all input boxes
+
+                    // NEW: Automatically hide the "SENT" message after 3000ms (3 seconds)
+                    setTimeout(() => {
+                        statusDiv.style.display = "none";
+                        statusDiv.textContent = "";
+                    }, 3000);
+
+                } else {
+                    statusDiv.style.color = "#da291c"; // Supreme red for error
+                    statusDiv.textContent = "ERROR: " + res.message;
+                    statusDiv.style.display = "block";
+                }
+            })
+            .catch(error => {
+                statusDiv.style.color = "#da291c";
+                statusDiv.textContent = "SYSTEM ERROR. TRY AGAIN.";
+                statusDiv.style.display = "block";
+            })
+            .then(() => {
+                submitBtn.textContent = "SEND MESSAGE";
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+
+</body>
+</html>

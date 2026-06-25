@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — Gunter Bostwick</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Arial Black", "Helvetica Inserat", "Arial Bold", sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            padding: 25px;
+            text-transform: uppercase;
+            position: relative; /* Essential for containing the full-page announcement */
+        }
+
+        a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Top Navigation Header */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 100; /* Keeps nav clickable over the overlay */
+        }
+
+        /* NEW: Supreme Stark Maintenance Overlay */
+        .maintenance-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #ffffff; /* Blocks out the grid underneath entirely */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 50; /* Sits over the grid but below header nav */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .maintenance-title {
+            font-size: 4vw;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
+
+        .maintenance-subtext {
+            font-family: Arial, sans-serif; /* Cleaner reading text variant */
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        /* Pure Supreme Style Grid Layout (Preserved behind the scenes) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto 50px auto;
+            opacity: 0.1; /* Keeps it faint in the background markup */
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #000000;
+            background-color: #ffffff;
+        }
+
+        .image-container {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-bottom: 2px solid #000000;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .project-details {
+            padding: 15px;
+            background: #ffffff;
+        }
+
+        .project-title {
+            font-size: 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 650px) {
+            .header-nav { margin-bottom: 40px; }
+            .maintenance-title { font-size: 14vw; }
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            body { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Block -->
+    <header class="header-nav">
+        <div class="top-left">
+            <a href="/">Gunter Bostwick</a>
+        </div>
+        <div class="top-right">
+            <a href="/contact">Contact</a>
+        </div>
+    </header>
+
+    <!-- MAIN ANNOUNCEMENT OVERLAY (Delete this block entirely when ready to launch) -->
+    <div class="maintenance-overlay">
+        <h1 class="maintenance-title">Building</h1>
+        <p class="maintenance-subtext">Rebuilding this page, please visit again later</p>
+    </div>
+
+    <!-- Main Grid Container (Preserved and safe) -->
+    <main class="projects-grid">
+        
+        <!-- Project 01 -->
+        <article class="project-card">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Project 01">
+            </div>
+            <div class="project-details">
+                <h2 class="project-title">Project One / Test Title</h2>
+            </div>
+        </article>
+
+        <!-- Project 02 -->
+        <article class="project-card">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80" alt="Project 02">
+            </div>
+            <div class="project-details">
+                <h2 class="project-title">Project Two / Test Title</h2>
+            </div>
+        </article>
+
+        <!-- Project 03 -->
+        <article class="project-card">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Project 03">
+            </div>
+            <div class="project-details">
+                <h2 class="project-title">Project Three / Test Title</h2>
+            </div>
+        </article>
+
+        <!-- Project 04 -->
+        <article class="project-card">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=800&q=80" alt="Project 04">
+            </div>
+            <div class="project-details">
+                <h2 class="project-title">Project Four / Test Title</h2>
+            </div>
+        </article>
+
+        <!-- Project 05 -->
+        <article class="project-card">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=80" alt="Project 05">
+            </div>
+            <div class="project-details">
+                <h2 class="project-title">Project Five / Test Title</h2>
+            </div>
+        </article>
+
+        <!-- Project 06 -->
+        <article class="project-card">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Project 06">
+            </div>
+            <div class="project-details">
+                <h2 class="project-title">Project Six / Test Title</h2>
+            </div>
+        </article>
+
+    </main>
+
+</body>
+</html>
